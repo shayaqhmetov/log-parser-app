@@ -1,0 +1,30 @@
+{
+  "name": "log-parser-app",
+  "version": "1.0.0",
+  "description": "Application parse log files",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "tsc && node ./dist/index.js",
+    "parse": "tsc && node dist/index.js --"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shayaqhmetov/log-parser-app.git"
+  },
+  "keywords": ["parse"],
+  "author": "Ruslan Shayakhmetov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shayaqhmetov/log-parser-app/issues"
+  },
+  "homepage": "https://github.com/shayaqhmetov/log-parser-app#readme",
+  "devDependencies": {
+    "@types/node": "^16.7.10",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "fast-csv": "^4.3.6"
+  }
+}
