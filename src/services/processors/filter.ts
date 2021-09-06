@@ -4,6 +4,13 @@ interface iFilterOptions {
   splitKey: string;
   filterKey: string;
 }
+/**
+ * Child class which extends Processor
+ * 
+ * Filter rows
+ * 
+ * @category Processor
+ */
 export default class Filter extends Processor {
   public options: iFilterOptions;
   constructor(options: iFilterOptions) {

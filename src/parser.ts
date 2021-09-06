@@ -14,7 +14,7 @@ class Parser {
     // Setup rack service with processors
     const reader = new Reader();
     const filter = new Filter({ splitKey: " - ", filterKey: "error"});
-    const writer = new Writer();
+    const writer = new Writer({ splitKey: " - " });
     this.rack = new Rack(reader, filter, writer);
   }
 

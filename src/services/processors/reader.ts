@@ -24,7 +24,7 @@ export default class Reader extends Processor {
    * @param {string[]} data - array of splited chunks
    * @return {string[]} array of file rows
    */
-  private _setLastRow(data: string[]): string[] {
+  public filterData(data: string[]): string[] {
     // iterate each part of splited chunk
     for (let index = 0; index < data.length; index++) {
       const spChunk = data[index];
@@ -58,7 +58,7 @@ export default class Reader extends Processor {
    */
   public process(data: Buffer[], count: number): string[] {
     const rows = data.toString().replace(/\n/g, "\r\n").split("\n");
-    const filterRows = this._setLastRow(rows);
+    const filterRows = this.filterData(rows);
     this.rows = [];
     return filterRows;
   }

@@ -2,15 +2,23 @@ import { TransformCallback } from "stream";
 
 import Processor from "../processor";
 
+interface iWriterOptions {
+  splitKey: string;
+}
 /**
  * Child class which extends Processor
  * 
- * Format incomming rows to JSON objects
+ * Convert array or object
  * 
  * @category Processor
  */
 export default class Writer extends Processor {
-  
+  public options: iWriterOptions;
+  private dataPassed: number = 0;
+  constructor(options: iWriterOptions) {
+    super({ objectMode: false });
+    this.options = options;
+  }
   /** 
    * Process array of string.
    * @param {string[]} data - Chunk data
@@ -18,17 +26,26 @@ export default class Writer extends Processor {
    * @return {string} formated JSON row
    */
   public process(data: string[], count: number): string {
-    let result = data.map(row => {
-      const spRow = row.split(" - ");
+    if(data.length > 0) {
+      this.dataPassed += 1;
+    }
+    let result = data.map((row: string, i: number) => {
+      const spRow = row.split(this.options.splitKey);
+      const info = JSON.parse(spRow[2]);
+      const timestamp = new Date(spRow[0]).getTime();
       const resultedRow = {
-        timestamp: spRow[0],
+        timestamp,
         loglevel: spRow[1],
-        ...JSON.parse(spRow[2])
+        transactionId: info["transactionId"],
+        err: info["err"]
       }
-      return JSON.stringify(resultedRow)+",";
+      if(this.dataPassed === 1) {
+        return JSON.stringify(resultedRow)
+      }
+      return `,${JSON.stringify(resultedRow)}`;
     });
     if(count === 1) {
-      return `[${result.join("")}`;
+      return `[${result}`;
     }
     return result.join("");
   }

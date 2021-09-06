@@ -25,7 +25,7 @@ export default class Processor extends Transform {
    * @param {number} count - Chunk iteration count
    * @return {object | any[] | string} must return transformed data in the same way as it was accepted
    */
-  public process(data: object | any[] | string, count: number): object | any[] | string {
+  public process(data: object | any[] | string | null, count: number): object | any[] | string | null {
     return data;
   }
 
