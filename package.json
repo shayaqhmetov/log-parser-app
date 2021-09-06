@@ -2,12 +2,12 @@
   "name": "log-parser-app",
   "version": "1.0.0",
   "description": "Application parse log files",
-  "main": "dist/index.js",
+  "main": "dist/parser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "tsc && node ./dist/index.js",
-    "parse": "tsc && node dist/index.js --"
+    "start": "tsc && node ./dist/parser.js",
+    "parse": "tsc && node dist/parser.js --"
   },
   "repository": {
     "type": "git",

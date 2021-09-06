@@ -1,14 +1,12 @@
-/**
- * @ignore
- */
 import { PassThrough, pipeline } from "stream";
+
 import Processor from "./processor";
 
 /**
  * Class that organizes working with CSV streams through processors
  * 
  * Each processor transofrms CSV data and passes it to next processor
- * @category Streams
+ * @category Service
  */
 export default class Rack {
   protected processors;
@@ -42,6 +40,7 @@ export default class Rack {
   /** 
    * Process stream through pipeline and executes each processor logic
    * @param {NodeJS.ReadableStream} inStream 
+   * @param {NodeJS.WritableStream} outStream 
    * @return {any} 
    */
   public process(inStream: NodeJS.ReadableStream, outStream: NodeJS.WritableStream): Promise<void> {
